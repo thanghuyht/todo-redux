@@ -2,7 +2,7 @@
 const initalState = {
     todoList: [],
     filters: {
-        status: 'active',
+        status: 'all',
         search: '',
     }
 }
@@ -22,7 +22,10 @@ function todoReducer(state = initalState, action) {
             return newState
 
         case "todoList/toggleStatus":
-            newState = { ...state, todoList: [...state.todoList.map(todo => todo.id === action.payload ? { ...todo, status: todo.status === 'active' ? 'completed' : 'active' } : todo)] }
+            newState = {
+                ...state,
+                todoList: [...state.todoList.map(todo => todo.id === action.payload ? { ...todo, status: todo.status === 'active' ? 'completed' : 'active' } : todo)]
+            }
             return newState
 
         case "todoList/clearCompleted":
