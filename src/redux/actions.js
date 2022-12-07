@@ -1,23 +1,45 @@
 
 export function addTodo(data) {
     return {
-        type: 'add',
+        type: 'todoList/add',
         payload: data
     }
 }
 
 export function destroyTodo(index) {
     return {
-        type: 'destroy',
+        type: 'todoList/destroy',
         payload: index
     }
 }
 
 
-export function toggleCompleted(id) {
+export function toggleStatus(id) {
     return {
-        type: 'toggleCompleted',
+        type: 'todoList/toggleStatus',
         payload: id
+    }
+}
+
+export function clearCompleted() {
+    return {
+        type: 'todoList/clearCompleted',
+        payload: "completed"
+    }
+}
+
+
+export function searchText(text) {
+    return {
+        type: 'filters/searchText',
+        payload: text
+    }
+}
+
+export function searchStatus(status) {
+    return {
+        type: 'filters/searchStatus',
+        payload: status
     }
 }
 

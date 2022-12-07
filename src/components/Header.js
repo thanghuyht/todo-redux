@@ -9,18 +9,21 @@ function Header() {
     const dispatch = useDispatch()
     const [todotitle, setTodotitle] = useState('')
 
-    function handleChange(e) {
-        let todoTitle = e.target.value
-        !todoTitle.startsWith(' ') && setTodotitle(todoTitle)
+    function handleChange(text) {
+        !text.startsWith(' ') && setTodotitle(text)
     }
 
     function handeSubmit(e) {
-        dispatch(addTodo({
-            id: uuidv4(),
-            title: todotitle,
-            completed: false
-        }))
-        setTodotitle('')
+        if (todotitle.length > 0) {
+            dispatch(addTodo(
+                {
+                    id: uuidv4(),
+                    title: todotitle.trim(),
+                    status: 'active'
+                }
+            ))
+            setTodotitle('')
+        }
     }
 
     return (
@@ -31,12 +34,13 @@ function Header() {
                 className="new-todo"
                 placeholder="What needs to be done?"
                 autoFocus
-                onChange={e => handleChange(e)}
+                onChange={e => handleChange(e.target.value)}
                 onKeyUp={
                     (e) => {
-                        e.keyCode === 13 && handeSubmit(e)
+                        e.key === "Enter" ? handeSubmit(e) : e.key === "Escape" && setTodotitle('')
                     }
                 }
+                onBlur={(e) => handeSubmit(e)}
             />
         </header>
     );
