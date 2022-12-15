@@ -6,10 +6,10 @@ export function addTodo(data) {
     }
 }
 
-export function destroyTodo(index) {
+export function destroyTodo(id) {
     return {
         type: 'todoList/destroy',
-        payload: index
+        payload: id
     }
 }
 
@@ -27,7 +27,6 @@ export function clearCompleted() {
         payload: "completed"
     }
 }
-
 
 export function searchText(text) {
     return {

@@ -6,10 +6,7 @@ import { todoRemainingSelector } from "../redux/selectors";
 
 function Footer() {
     const [searchInput, setSearchInput] = useState('')
-    // const [searchSelect, setSearchSelect] = useState('all')
-
     const todoList = useSelector(todoRemainingSelector)
-
     const dispatch = useDispatch()
 
     const handleSearch = (e) => {
@@ -26,11 +23,12 @@ function Footer() {
 
     return (
         <footer className="footer">
-            {/* <!-- This should be `0 items left` by default --> */}
+
             <span className="todo-count"><strong>{todoList.length}</strong> Items</span>
-            {/* <!-- Remove this if you don't implement routing --> */}
+
             <div id="search" className="filters">
                 <input
+                    id="searchInput"
                     placeholder="Search..."
                     type="search"
                     name="search"
@@ -39,6 +37,7 @@ function Footer() {
 
                 />
                 <select
+                    id="searchSeclect"
                     onChange={(e) => handleChangeSelect(e)}
                 >
                     <option value="all">All</option>
@@ -47,7 +46,7 @@ function Footer() {
                 </select>
 
             </div>
-            {/* <!-- Hidden if no completed items are left ↓ --> */}
+
             <button
                 className="clear-completed"
                 onClick={() => dispatch(clearCompleted())}

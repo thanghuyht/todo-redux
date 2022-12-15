@@ -28,7 +28,7 @@ function Header() {
 
     return (
         <header className="header">
-            <h1>todos</h1>
+            <h1>Todos</h1>
             <input
                 value={todotitle}
                 className="new-todo"
